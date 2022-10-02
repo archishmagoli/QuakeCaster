@@ -93,7 +93,7 @@ wth = 350
 hgt = 255
 
 # Creating the image for the GUI
-motor_img = PhotoImage(file = "C:\\Users\\archi\\EAS Project\\StepperMotor_ROHS.png")
+motor_img = PhotoImage(file = "StepperMotor_ROHS.png")
 canvas = Canvas(width = wth, height = hgt)
 canvas.create_image(wth/2, hgt/2, image = motor_img)
 canvas.grid(row = 0, column = 0, columnspan = 2)
