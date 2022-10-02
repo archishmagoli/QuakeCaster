@@ -95,7 +95,7 @@ long Parse_the_Data(String dataIn) {
   motDirString = String(motDir);
 }
 
-void stepper_Clockwise() {
+void stepper_Anticlockwise() {
   for (int i = 0; i < stepsRev; i++) {
     Serial.println("Working");
     digitalWrite(portIN1, LOW);
@@ -121,7 +121,7 @@ void stepper_Clockwise() {
     }
   }
 
-  void stepper_Anticlockwise() {
+  void stepper_Clockwise() {
     for (int i = 0; i < stepsRev; i++) {
     digitalWrite(portIN1, HIGH);
     digitalWrite(portIN2, LOW);
