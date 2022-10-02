@@ -1,1 +1,1 @@
-# EAS2600Project
+# Earthquake Simulator Project
