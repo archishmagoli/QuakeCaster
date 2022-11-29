@@ -7,8 +7,7 @@ import tkinter as tk
 motRun = "1"
 indexA = "A"
 indexB = "B"
-indexC = "C"
-indexD = "D"
+indexC = "D"
 
 newLine = "\n"
 
@@ -40,21 +39,10 @@ def sendData(motDir):
     serialInst.write(motSpeed.encode('utf-8'))
     serialInst.write(indexB.encode('utf-8'))
 
-    motAngle = angleSet.get()
-    if motAngle != "":
-        serialInst.write(motAngle.encode('utf-8'))
-        serialInst.write(indexC.encode('utf-8'))
-        total += motAngle
-        total += indexC
-    else:
-        textAngle.config(text = "Please input angle")
-        root.after(1000, textAngleReset)
-        print("Please input angle")
-
     serialInst.write(motDir.encode())
-    serialInst.write(indexD.encode())
+    serialInst.write(indexC.encode())
     total += motDir
-    total += indexD
+    total += indexC
 
     serialInst.write(newLine.encode('utf-8'))
 
@@ -72,10 +60,6 @@ def confirmTransfer():
 def confirmTransferReset():
     canvas.itemconfig(confirm_text, text = "")
 
-# Resetting the message that requested the user to input angle
-def textAngleReset():
-    textAngle.config(text = "")
-
 # Functions to enable clockwise and anticlockwise rotation and to initiate the transmission of data to Serial
 def RotateClockwise():
     motDir = "Clockwise"
@@ -85,15 +69,19 @@ def RotateAnticlockwise():
     motDir = "Anticlockwise"
     sendData(motDir)
 
+def Stop():
+    motRun = 0
+    sendData(motRun)
+
 # Defining parameters of GUI and associating GUI widgets
 root = Tk()
 root.title("Earthquake Simulator GUI")
 
 wth = 350
-hgt = 255
+hgt = 300
 
 # Creating the image for the GUI
-motor_img = PhotoImage(file = "C:\\Users\\archi\\EAS Project\\EAS2600Project\\StepperMotor_ROHS.png")
+motor_img = PhotoImage(file = "C:\\Users\\archi\EAS Project\\EAS2600Project\\maxresdefault.png")
 canvas = Canvas(width = wth, height = hgt)
 canvas.create_image(wth/2, hgt/2, image = motor_img)
 canvas.grid(row = 0, column = 0, columnspan = 2)
@@ -101,27 +89,17 @@ confirm_text = canvas.create_text(wth/2, hgt/2, text="")
 
 # Creating a label and slider to control the speed of the motor
 speedLabel = Label(root, text = "Speed (in RPM)")
-speedLabel.grid(row = 1, column = 0)
+speedLabel.grid(row = 4, column = 0, columnspan = 2)
 slider = Scale(root, from_ = 1, to = 9, length = 300, tickinterval = 1, orient=HORIZONTAL)
 slider.set(4)
-slider.grid(row = 2, column = 0, columnspan = 2)
-
-# Creating a label and entry box to set angle of rotation
-angleLabel = Label(root, text = "Angle (in degrees)")
-angleLabel.grid(row = 3, column = 0)
-angleSet = Entry(root, width = 10)
-angleSet.grid(row = 3, column = 1)
-
-# Creating the text box, which activates when no angle input is present
-textAngle = Label(root, text = "", fg = "red")
-textAngle.grid(row = 4, column = 1)
+slider.grid(row = 5, column = 0, columnspan = 2)
 
 # Creating the buttons to set the direction of the rotation and transmit this data to the serial
 btn_forward = tk.Button(root, text = "Clockwise", command=RotateClockwise)
-btn_forward.grid(row = 5, column = 0)
+btn_forward.grid(row = 8, column = 0)
 
 btn_backward = tk.Button(root, text = "Anticlockwise", command=RotateAnticlockwise)
-btn_backward.grid(row = 5, column = 1)
+btn_backward.grid(row = 8, column = 1)
 
 # Defining the size of the window and looping through
 root.geometry("350x450")
