@@ -53,14 +53,12 @@ void loop() {
       // Serial.println(motDirString);
       // Serial.println('\n');
 
-      if (motDirString == "Clockwise") {
-        digitalWrite(dirPin, HIGH);
-        motor_Run();
-        Serial.println(" Successful clockwise!");
-      } else if (motDirString == "Anticlockwise") {
-        digitalWrite(dirPin, LOW);
-        motor_Run();
-        Serial.println(" Successful anticlockwise!");
+      while (motDirString == "Clockwise") {
+        
+        motor_Run_Clockwise(motSpeedFloat);
+      }
+      while (motDirString == "Anticlockwise") {
+        motor_Run_Anticlockwise(motSpeedFloat);
       }
     } 
   }
@@ -76,12 +74,22 @@ long Parse_the_Data(String dataIn) {
   motRun = dataIn.substring(0, indexA);
   motRunInt = motRun.toInt();
   motSpeed = dataIn.substring(indexA + 1, indexB);
-  motSpeedFloat = motSpeed.toFloat();
+  motSpeedFloat = (10 - motSpeed.toFloat())*200;
+  
   motDir = dataIn.substring(indexB + 1, indexC);
   motDirString = String(motDir);
 }
 
-void motor_Run() {
+void motor_Run_Clockwise(float delaySec) {
+    digitalWrite(dirPin, LOW);
+    digitalWrite(stepPin,HIGH); 
+    delayMicroseconds(delaySec); 
+    digitalWrite(stepPin,LOW); 
+    delayMicroseconds(delaySec); 
+}
+
+void motor_Run_Anticlockwise(float delaySec) {
+  digitalWrite(dirPin, HIGH);
   digitalWrite(stepPin,HIGH); 
   delayMicroseconds(delaySec); 
   digitalWrite(stepPin,LOW); 

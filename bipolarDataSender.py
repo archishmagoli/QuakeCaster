@@ -14,7 +14,7 @@ newLine = "\n"
 # Here we are defining the serial port and opening up before sending data
 serialInst = serial.Serial()
 
-portVal = "COM3"
+portVal = "COM5"
 print(f"Selecting port {portVal}")
 
 serialInst.baudrate = 9600
@@ -81,14 +81,14 @@ wth = 350
 hgt = 300
 
 # Creating the image for the GUI
-motor_img = PhotoImage(file = "C:\\Users\\archi\EAS Project\\EAS2600Project\\maxresdefault.png")
+motor_img = PhotoImage(file = "maxresdefault.png")
 canvas = Canvas(width = wth, height = hgt)
 canvas.create_image(wth/2, hgt/2, image = motor_img)
 canvas.grid(row = 0, column = 0, columnspan = 2)
 confirm_text = canvas.create_text(wth/2, hgt/2, text="")
 
 # Creating a label and slider to control the speed of the motor
-speedLabel = Label(root, text = "Speed (in RPM)")
+speedLabel = Label(root, text = "Speed (in RPM x10)")
 speedLabel.grid(row = 4, column = 0, columnspan = 2)
 slider = Scale(root, from_ = 1, to = 9, length = 300, tickinterval = 1, orient=HORIZONTAL)
 slider.set(4)
