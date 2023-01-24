@@ -26,31 +26,9 @@ void setup() {
 }
 
 void loop() {
-  // Check to see if anything is available in the Serial (input stream)
-  while (Serial.available() > 0) {
-    char charData = Serial.read();
-
-    Serial.println(charData);
-
-    while (charData == '5') {
-      motor_Run_Clockwise(1000);
-    }
-  }
-}
-
-void motor_Run_Clockwise(float delaySec) {
     digitalWrite(dirPin, LOW);
     digitalWrite(stepPin,HIGH); 
-    delayMicroseconds(delaySec); 
+    delayMicroseconds(1000); 
     digitalWrite(stepPin,LOW); 
-    delayMicroseconds(delaySec); 
-}
-
-void motor_Run_Anticlockwise(float delaySec) {
-  Serial.println(delaySec);
-  digitalWrite(dirPin, HIGH);
-  digitalWrite(stepPin,HIGH); 
-  delayMicroseconds(delaySec); 
-  digitalWrite(stepPin,LOW); 
-  delayMicroseconds(delaySec); 
+    delayMicroseconds(1000);
 }

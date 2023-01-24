@@ -2,7 +2,6 @@
 const int stepPin = 5; 
 const int dirPin = 2; 
 const int enPin = 8;
-// const int delaySec = 500;
 
 // defining the temporary variables
 const unsigned int MAX_MESSAGE_LENGTH = 50; // arbitrary number
@@ -26,28 +25,27 @@ void setup() {
 }
 
 void loop() {
-  // Check to see if anything is available in the Serial (input stream)
-  while (Serial.available() > 0) {
-    char charData = Serial.read();
-
-    Serial.println(charData);
-
-    while (charData == '5') {
-      motor_Run_Clockwise(1000);
+  if (Serial.available()) {
+    String input = Serial.readStringUntil('\n');
+    if (input != "Stop") {
+      if (input == "Clockwise") {
+        motor_Run_Clockwise(500);
+      } else if (input == "Anticlockwise") {
+        motor_Run_Anticlockwise(500);
+      }
     }
   }
 }
 
 void motor_Run_Clockwise(float delaySec) {
-    digitalWrite(dirPin, LOW);
-    digitalWrite(stepPin,HIGH); 
-    delayMicroseconds(delaySec); 
-    digitalWrite(stepPin,LOW); 
-    delayMicroseconds(delaySec); 
+  digitalWrite(dirPin, LOW);
+  digitalWrite(stepPin,HIGH); 
+  delayMicroseconds(delaySec); 
+  digitalWrite(stepPin,LOW); 
+  delayMicroseconds(delaySec); 
 }
 
 void motor_Run_Anticlockwise(float delaySec) {
-  Serial.println(delaySec);
   digitalWrite(dirPin, HIGH);
   digitalWrite(stepPin,HIGH); 
   delayMicroseconds(delaySec); 

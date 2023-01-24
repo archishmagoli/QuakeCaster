@@ -7,7 +7,7 @@ import tkinter as tk
 motRun = "1"
 indexA = "A"
 indexB = "B"
-indexC = "D"
+indexD = "D"
 
 newLine = "\n"
 
@@ -27,29 +27,29 @@ serialInst.open()
 # Sending data to Serial Port
 def sendData(motDir):
     total = ""
-    total += motRun
-    total += indexA
-    serialInst.write(motRun.encode('utf-8'))
-    serialInst.write(indexA.encode('utf-8'))
+    
+    if motDir == "Stop":
+        total = motDir
+    else: 
+        total += motRun
+        total += indexA
 
-    motSpeedInt = slider.get()
-    motSpeed = str(motSpeedInt)
-    total += motSpeed
-    total += indexB
-    serialInst.write(motSpeed.encode('utf-8'))
-    serialInst.write(indexB.encode('utf-8'))
+        motSpeedInt = slider.get()
+        motSpeed = str(11 - motSpeedInt)
+        total += motSpeed
+        total += indexB
 
-    serialInst.write(motDir.encode())
-    serialInst.write(indexC.encode())
-    total += motDir
-    total += indexC
+        total += motDir
+        total += indexD
 
+    serialInst.write(total.encode('utf-8'))
     serialInst.write(newLine.encode('utf-8'))
 
     confirmTransfer()
     print("Data Sent")
 
     print(total)
+
 
 # Showing confirmation message that the data has been sent
 def confirmTransfer():
@@ -70,12 +70,12 @@ def RotateAnticlockwise():
     sendData(motDir)
 
 def Stop():
-    motRun = 0
+    motRun = "Stop"
     sendData(motRun)
 
 # Defining parameters of GUI and associating GUI widgets
 root = Tk()
-root.title("Earthquake Simulator GUI")
+root.title("QuakeCaster Lab Simulator")
 
 wth = 350
 hgt = 300
@@ -84,15 +84,17 @@ hgt = 300
 motor_img = PhotoImage(file = "C:\\Users\\archi\EAS Project\\EAS2600Project\\maxresdefault.png")
 canvas = Canvas(width = wth, height = hgt)
 canvas.create_image(wth/2, hgt/2, image = motor_img)
-canvas.grid(row = 0, column = 0, columnspan = 2)
+canvas.grid(row = 0, column = 0, columnspan = 3)
 confirm_text = canvas.create_text(wth/2, hgt/2, text="")
 
 # Creating a label and slider to control the speed of the motor
-speedLabel = Label(root, text = "Speed (in RPM)")
-speedLabel.grid(row = 4, column = 0, columnspan = 2)
-slider = Scale(root, from_ = 1, to = 9, length = 300, tickinterval = 1, orient=HORIZONTAL)
+speedLabel = Label(root, text = "Speed Controls", font=('TkDefaultFont', 15, 'bold'))
+descriptionLabel = Label(root, text = "Configure the speed and direction of rotation for your stepper motor below. Press the button for direction (or for \"Stop\") to get your motor running!", wraplength=325, justify="center")
+speedLabel.grid(row = 4, column = 0, columnspan = 3)
+descriptionLabel.grid(row = 5, column = 0, columnspan = 3)
+slider = Scale(root, from_ = 1, to = 10, length = 300, tickinterval = 1, orient=HORIZONTAL)
 slider.set(4)
-slider.grid(row = 5, column = 0, columnspan = 2)
+slider.grid(row = 7, column = 0, columnspan = 3)
 
 # Creating the buttons to set the direction of the rotation and transmit this data to the serial
 btn_forward = tk.Button(root, text = "Clockwise", command=RotateClockwise)
@@ -101,6 +103,9 @@ btn_forward.grid(row = 8, column = 0)
 btn_backward = tk.Button(root, text = "Anticlockwise", command=RotateAnticlockwise)
 btn_backward.grid(row = 8, column = 1)
 
+btn_stop = tk.Button(root, text = "Stop", command=Stop)
+btn_stop.grid(row = 8, column = 2)
+
 # Defining the size of the window and looping through
-root.geometry("350x450")
+root.geometry("350x500")
 root.mainloop()

@@ -2,7 +2,6 @@
 const int stepPin = 5; 
 const int dirPin = 2; 
 const int enPin = 8;
-const int delaySec = 500;
 
 // defining the temporary variables
 const unsigned int MAX_MESSAGE_LENGTH = 50; // arbitrary number
@@ -27,7 +26,7 @@ void setup() {
 
 void loop() {
   // Check to see if anything is available in the Serial (input stream)
-  while (Serial.available() > 0) {
+  if (Serial.available() > 0) {
 
     // Create a place to hold the incoming message
     static char motData[MAX_MESSAGE_LENGTH]; // Created an array of characters to hold the message
@@ -48,19 +47,11 @@ void loop() {
       index_pos = 0; // index_pos is reset
       Parse_the_Data(motData); // value is parsed
 
-      // Serial.println(motRunInt);
-      // Serial.println(motSpeedFloat);
-      // Serial.println(motDirString);
-      // Serial.println('\n');
-
-      if (motDirString == "Clockwise") {
-        digitalWrite(dirPin, HIGH);
-        motor_Run();
-        Serial.println(" Successful clockwise!");
-      } else if (motDirString == "Anticlockwise") {
-        digitalWrite(dirPin, LOW);
-        motor_Run();
-        Serial.println(" Successful anticlockwise!");
+      while (motDirString == "Clockwise") {
+        motor_Run_Clockwise(200 * motSpeedFloat);
+      }
+      while (motDirString == "Anticlockwise") {
+        motor_Run_Anticlockwise(200 * motSpeedFloat);
       }
     } 
   }
@@ -81,7 +72,16 @@ long Parse_the_Data(String dataIn) {
   motDirString = String(motDir);
 }
 
-void motor_Run() {
+void motor_Run_Clockwise(float delaySec) {
+  digitalWrite(dirPin, LOW);
+  digitalWrite(stepPin,HIGH); 
+  delayMicroseconds(delaySec); 
+  digitalWrite(stepPin,LOW); 
+  delayMicroseconds(delaySec); 
+}
+
+void motor_Run_Anticlockwise(float delaySec) {
+  digitalWrite(dirPin, HIGH);
   digitalWrite(stepPin,HIGH); 
   delayMicroseconds(delaySec); 
   digitalWrite(stepPin,LOW); 
