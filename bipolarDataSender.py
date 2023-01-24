@@ -1,7 +1,7 @@
 import serial.tools.list_ports
 from tkinter import *
-import time
 import tkinter as tk
+import os
 
 # Defining the variables we'll use in our script
 motRun = "1"
@@ -14,7 +14,7 @@ newLine = "\n"
 # Here we are defining the serial port and opening up before sending data
 serialInst = serial.Serial()
 
-portVal = "COM5"
+portVal = "COM3"
 print(f"Selecting port {portVal}")
 
 serialInst.baudrate = 9600
@@ -81,7 +81,7 @@ wth = 350
 hgt = 300
 
 # Creating the image for the GUI
-motor_img = PhotoImage(file = "maxresdefault.png")
+motor_img = PhotoImage(file = (os.path.join(os.getcwd(), os.path.dirname(__file__), "maxresdefault.png")))
 canvas = Canvas(width = wth, height = hgt)
 canvas.create_image(wth/2, hgt/2, image = motor_img)
 canvas.grid(row = 0, column = 0, columnspan = 3)
