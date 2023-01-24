@@ -25,7 +25,7 @@ void setup() {
   digitalWrite(enPin,LOW);
 }
 
-void loop() {
+void loop() {  
   // Check to see if anything is available in the Serial (input stream)
   while (Serial.available() > 0) {
     char charData = Serial.read();

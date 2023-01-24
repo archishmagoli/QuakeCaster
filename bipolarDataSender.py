@@ -14,7 +14,7 @@ newLine = "\n"
 # Here we are defining the serial port and opening up before sending data
 serialInst = serial.Serial()
 
-portVal = "COM3"
+portVal = "COM5"
 print(f"Selecting port {portVal}")
 
 serialInst.baudrate = 9600
@@ -81,7 +81,7 @@ wth = 350
 hgt = 300
 
 # Creating the image for the GUI
-motor_img = PhotoImage(file = "C:\\Users\\archi\EAS Project\\EAS2600Project\\maxresdefault.png")
+motor_img = PhotoImage(file = "maxresdefault.png")
 canvas = Canvas(width = wth, height = hgt)
 canvas.create_image(wth/2, hgt/2, image = motor_img)
 canvas.grid(row = 0, column = 0, columnspan = 3)
