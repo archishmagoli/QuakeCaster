@@ -53,6 +53,10 @@ def RotateClockwise():
     motDir = "Clockwise"
     sendData(motDir)
 
+def RotateAnticlockwise():
+    motDir = "Anticlockwise"
+    sendData(motDir)
+
 def Stop():
     motRun = "Stop"
     sendData(motRun)
@@ -67,19 +71,29 @@ hgt = 200
 # Creating a label and slider to control the speed of the motor
 speedLabel = Label(root, text = "Speed Controls", font=('TkDefaultFont', 15, 'bold'))
 descriptionLabel = Label(root, text = "Configure the speed and direction of rotation for your stepper motor below. Press the button for direction (or for \"Stop\") to get your motor running!", wraplength=325, justify="center")
-speedLabel.grid(row = 1, column = 0, columnspan = 2)
-descriptionLabel.grid(row = 2, column = 0, columnspan = 2)
-slider = Scale(root, from_ = 1, to = 10, length = 275, tickinterval = 1, orient=HORIZONTAL)
+speedLabel.grid(row = 1, column = 0, columnspan = 3)
+descriptionLabel.grid(row = 2, column = 0, columnspan = 3)
+slider = Scale(root, from_ = 1, to = 10, length = 300, tickinterval = 1, orient=HORIZONTAL)
 slider.set(4)
 slider.grid(row = 3, column = 0, columnspan = 3)
 
 # Creating the buttons to set the direction of the rotation and transmit this data to the serial
 btn_forward = tk.Button(root, text = "Clockwise", command=RotateClockwise)
-btn_forward.grid(row = 8, column = 0)
+btn_forward.grid(row = 8, column = 1)
+
+# btn_backward = tk.Button(root, text = "Anticlockwise", command=RotateAnticlockwise)
+# btn_backward.grid(row = 8, column = 1)
 
 btn_stop = tk.Button(root, text = "Stop", command=Stop)
-btn_stop.grid(row = 8, column = 1)
+btn_stop.grid(row = 8, column = 2)
 
 # Defining the size of the window and looping through
 root.geometry("325x200")
-root.mainloop()
+
+try: 
+    while 'normal' == root.state():
+        print(serialInst.read(12))
+        root.update()
+except TclError:
+    serialInst.close()
+    print("Application closed.")

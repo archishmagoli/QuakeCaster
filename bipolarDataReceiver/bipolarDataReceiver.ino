@@ -1,3 +1,5 @@
+#include "VernierLib.h" //include Vernier functions in this sketch
+
 // Defining the connecting ports
 const int stepPin = 5; 
 const int dirPin = 2; 
@@ -14,6 +16,9 @@ String motDir, motRun, motSpeed;
 int motRunInt;
 float motSpeedFloat;
 String motDirString;
+VernierLib Vernier; //create an instance of the VernierLib library
+
+float sensorReading; //create global variable to store sensor reading
 
 // Setup
 void setup() {
@@ -22,6 +27,7 @@ void setup() {
   pinMode(dirPin, OUTPUT);
   pinMode(enPin, OUTPUT);
   digitalWrite(enPin, LOW);
+  Vernier.autoID(); // identify the sensor being used
 }
 
 void loop() {
@@ -48,6 +54,14 @@ void loop() {
       motorSpecs = Serial.readStringUntil('\n');
     }
   }
+  readSensor();
+  delay(500);
+}
+
+void readSensor() {
+  sensorReading = Vernier.readSensor(); // read one data value
+  Serial.println(sensorReading); // graph data point 
+  // delay(500); // wait half second
 }
 
 // Clockwise run function
@@ -57,6 +71,7 @@ void motor_Run_Clockwise(float delaySec) {
   delayMicroseconds(delaySec); 
   digitalWrite(stepPin,LOW); 
   delayMicroseconds(delaySec); 
+  readSensor();
 }
 
 // Anticlockwise run function
@@ -66,6 +81,7 @@ void motor_Run_Anticlockwise(float delaySec) {
   delayMicroseconds(delaySec); 
   digitalWrite(stepPin,LOW); 
   delayMicroseconds(delaySec); 
+  readSensor();
 }
 
 long Parse_the_Data(String dataIn) {
