@@ -55,7 +55,6 @@ void loop() {
     }
   }
   readSensor();
-  delay(500);
 }
 
 void readSensor() {
@@ -70,8 +69,9 @@ void motor_Run_Clockwise(float delaySec) {
   digitalWrite(stepPin,HIGH); 
   delayMicroseconds(delaySec); 
   digitalWrite(stepPin,LOW); 
-  delayMicroseconds(delaySec); 
+  delay(delaySec); 
   readSensor();
+  delay(delaySec);
 }
 
 // Anticlockwise run function
@@ -80,8 +80,9 @@ void motor_Run_Anticlockwise(float delaySec) {
   digitalWrite(stepPin,HIGH); 
   delayMicroseconds(delaySec); 
   digitalWrite(stepPin,LOW); 
-  delayMicroseconds(delaySec); 
+  delay(delaySec); 
   readSensor();
+  delay(delaySec);
 }
 
 long Parse_the_Data(String dataIn) {
