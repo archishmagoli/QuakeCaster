@@ -18,3 +18,8 @@
 - Ability to customize motor speed and direction of rotation.
 - Live updation of force vs. time graph, based on values sent from the Vernier force sensor.
 - (In development) Data export to CSV/Excel formats.
+
+## Contributors
+- Archie Goli (August 2022 - Present)
+- Reiden Webber (August 2022 - December 2022)
+- Hayden Narey (August 2022 - December 2022)
