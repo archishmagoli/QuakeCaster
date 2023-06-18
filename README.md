@@ -20,6 +20,6 @@
 - (In development) Data export to CSV/Excel formats.
 
 ## Contributors
-- **Archie Goli (August 2022 - Present)**
+- ***Archie Goli (August 2022 - Present)***
 - Reiden Webber (August 2022 - December 2022)
 - Hayden Narey (August 2022 - December 2022)
