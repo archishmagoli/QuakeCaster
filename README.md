@@ -7,12 +7,12 @@
 
 ## Developer Setup
 - Install the following software: 
-  - [Arduino IDE](https://www.arduino.cc/en/software).
-  - Python (version `3.10.*` or above)
-  - `tkinter` library (instructions [here](https://www.geeksforgeeks.org/how-to-install-tkinter-in-windows/)): required for GUI creation.
+  - [Arduino IDE](https://www.arduino.cc/en/software) - required for Arduino + hardware integration.
+  - Python (version `3.10.*` or above).
+  - `tkinter` library (instructions [here](https://www.geeksforgeeks.org/how-to-install-tkinter-in-windows/)): required for GUI manipulation.
   - `matplotlib` library: required for data visualization.
-  - `pandas` library: required for data visualization. 
-    - (Both `pandas` and `matplotlib` can be installed through `pip` on the command line.)
+  - `serial` library: required for sending and receiving serial input/output with the force sensor.
+    - (`matplotlib` can be installed through `pip` on the command line.)
 
 ## Features (Continuously Updated)
 - Ability to customize motor speed and direction of rotation.
