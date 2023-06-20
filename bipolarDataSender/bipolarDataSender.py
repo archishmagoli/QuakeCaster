@@ -83,9 +83,8 @@ def animate(i, data_list, serialInst):
     # Format plot
     ax.set_ylim([-5, 5])
     ax.set_title("Force Sensor Reading Live Plot")
-    ax.set_ylabel("Force Sensor Reading (N)")
     ax.set_ylabel("Force (N)")
-    ax.set_ylabel("Time (s)")
+    ax.set_xlabel("Time (s)")
 
 # Creating the GUI
 root = tkinter.Tk()
