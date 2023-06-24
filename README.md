@@ -17,6 +17,7 @@
 ## Features (Continuously Updated)
 - Ability to customize motor speed and direction of rotation.
 - Live updation of force vs. time graph, based on values sent from the Vernier force sensor.
+  - (In development) Additional flexibility to stop and start recording data for force vs. time graph.
 - (In development) Data export to CSV/Excel formats.
 
 ## Contributors
