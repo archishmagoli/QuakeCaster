@@ -1,6 +1,12 @@
 # QuakeCaster Earthquake Simulator Project
 ## Background + About the Lab Experiment
-(Under construction)
+The **QuakeCaster** is an interactive laboratory model that simulates **earthquakes** and **plate-boundary faults.** Current faculty members at Georgia Tech have historically used the model as a way to demonstrate in real-time the impact of earthquakes and strike-slip faults on the stability of the Earth's crust. 
+- 🔴 **The Problem:** There was *constant human error* resulting from the cranking of a fishing reel (or winch), which was needed to pull the mass that, when slipped on the ground, would simulate the faults.
+- 🟢 **Our Solution:** In order to *optimize the lab** for students and **gather useful data**, we decided to automate this lab setup and create a new model using **Arduino boards** and an interactive GUI created using Python's `tkinter` library.
+
+[Here is our in-class presentation](https://docs.google.com/presentation/d/1PdBOjfu7RH4z4XNIv7g74CdangAlTY7koaaqGK-brsM/edit?usp=sharing), detailing our previous work and MVP result. 
+
+I decided to **take this project further**, adding new enhancements to further enhance the usability of this model within the classroom. You can check out the new tools being added to the project in the **Features** section below!
 
 ## User Setup
 - Clone this repository and run `bipolarDataSender.exe` to start the GUI. From there, you have the required information to complete the lab.
