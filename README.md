@@ -2,7 +2,7 @@
 ## Background + About the Lab Experiment
 The **QuakeCaster** is an interactive laboratory model that simulates **earthquakes** and **plate-boundary faults.** Current faculty members at Georgia Tech have historically used the model as a way to demonstrate in real-time the impact of earthquakes and strike-slip faults on the stability of the Earth's crust. 
 - 🔴 **The Problem:** There was *constant human error* resulting from the cranking of a fishing reel (or winch), which was needed to pull the mass that, when slipped on the ground, would simulate the faults.
-- 🟢 **Our Solution:** In order to *optimize the lab** for students and **gather useful data**, we decided to automate this lab setup and create a new model using **Arduino boards** and an interactive GUI created using Python's `tkinter` library.
+- 🟢 **Our Solution:** In order to *optimize the lab* for students and **gather useful data**, we decided to automate this lab setup and create a new model using **Arduino boards** and an interactive GUI created using Python's `tkinter` library.
 
 [Here is our in-class presentation](https://docs.google.com/presentation/d/1PdBOjfu7RH4z4XNIv7g74CdangAlTY7koaaqGK-brsM/edit?usp=sharing), detailing our previous work and MVP result. 
 
