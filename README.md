@@ -9,7 +9,7 @@ The **QuakeCaster** is an interactive laboratory model that simulates **earthqua
 I decided to **take this project further**, adding new enhancements to further enhance the usability of this model within the classroom. You can check out the new tools being added to the project in the **Features** section below!
 
 ## User Setup
-- Clone this repository and run `bipolarDataSender.exe` to start the GUI. From there, you have the required information to complete the lab.
+- Clone this repository and run `bipolarDataSender.exe` (to be updated) to start the GUI. From there, you have the required information to complete the lab.
 
 ## Developer Setup
 - Install the following software: 
