@@ -18,7 +18,7 @@ I decided to **take this project further**, adding new enhancements to further e
   - `tkinter` library (instructions [here](https://www.geeksforgeeks.org/how-to-install-tkinter-in-windows/)): required for GUI manipulation.
   - `matplotlib` library: required for data visualization.
   - `serial` library: required for sending and receiving serial input/output with the force sensor.
-    - (`matplotlib` can be installed through `pip` on the command line.)
+    - (`matplotlib` and `serial` can be installed through `pip` on the command line.)
 
 ## Features (Continuously Updated)
 - Ability to customize motor speed and direction of rotation.
