@@ -27,8 +27,6 @@ serialInst.open()
 # Defining functions we'll use when we press the button
 
 # Sending data to Serial Port
-
-
 def sendData(motDir):
     total = ""
 
@@ -50,8 +48,6 @@ def sendData(motDir):
     serialInst.write(newLine.encode('utf-8'))
 
 # Functions to enable clockwise and anticlockwise rotation and to initiate the transmission of data to Serial
-
-
 def RotateClockwise():
     motDir = "Clockwise"
     sendData(motDir)
@@ -60,11 +56,9 @@ def RotateClockwise():
 #     motDir = "Anticlockwise"
 #     sendData(motDir)
 
-
 def Stop():
     motRun = "Stop"
     sendData(motRun)
-
 
 # Creating the GUI
 root = tkinter.Tk()
@@ -73,10 +67,12 @@ root.wm_title("Quakecaster Simulator")
 # Creating a label and slider to control the speed of the motor
 speedLabel = Label(root, text="Speed Controls",
                    font=('TkDefaultFont', 15, 'bold'))
+speedLabel.pack()
+
 descriptionLabel = Label(
     root, text="Configure the speed and direction of rotation for your stepper motor below. Press the button for direction (or for \"Stop\") to get your motor running!", wraplength=325, justify="center")
-speedLabel.pack()
 descriptionLabel.pack()
+
 slider = Scale(root, from_=1, to=10, length=300,
                tickinterval=1, orient=HORIZONTAL)
 slider.set(4)
@@ -144,8 +140,7 @@ btn_graph = tkinter.Button(
     root, text="Pause/Resume Graph", command=pause_animation)
 btn_graph.pack(pady=5)
 
-btn_restart = tkinter.Button(
-    root, text="Restart Recording")
+btn_restart = tkinter.Button(root, text="Restart Recording")
 btn_restart.pack(pady=5)
 
 plt.show()
