@@ -24,9 +24,11 @@ serialInst.port = portVal
 
 serialInst.open()
 
-## Defining functions we'll use when we press the button
+# Defining functions we'll use when we press the button
 
 # Sending data to Serial Port
+
+
 def sendData(motDir):
     total = ""
 
@@ -48,6 +50,8 @@ def sendData(motDir):
     serialInst.write(newLine.encode('utf-8'))
 
 # Functions to enable clockwise and anticlockwise rotation and to initiate the transmission of data to Serial
+
+
 def RotateClockwise():
     motDir = "Clockwise"
     sendData(motDir)
@@ -56,35 +60,11 @@ def RotateClockwise():
 #     motDir = "Anticlockwise"
 #     sendData(motDir)
 
+
 def Stop():
     motRun = "Stop"
     sendData(motRun)
 
-def animate(i, data_list, serialInst):
-    bytes = serialInst.readline()
-    string_n = bytes.decode()
-    string = string_n.rstrip()
-    float_value = float(string)
-
-    # Add x and y to lists
-    try:
-        float_value = float(string)
-        data_list.append(float_value)
-    except:
-        pass
-
-    # Limit the data list to 100 values
-    data_list = data_list[-100:]
-
-    # clear the last frame and draw the next frame
-    ax.clear()
-    ax.plot(data_list)
-
-    # Format plot
-    ax.set_ylim([-5, 5])
-    ax.set_title("Force Sensor Reading Live Plot")
-    ax.set_ylabel("Force (N)")
-    ax.set_xlabel("Time (s)")
 
 # Creating the GUI
 root = tkinter.Tk()
@@ -103,13 +83,13 @@ slider.set(4)
 slider.pack()
 
 # Creating the buttons to set the direction of the rotation and transmit this data to the serial
-btn_forward = tkinter.Button(root, text="Clockwise")
+btn_forward = tkinter.Button(root, text="Start Motor", command=RotateClockwise)
 btn_forward.pack(pady=5)
 
 # btn_backward = tk.Button(root, text = "Anticlockwise", command=RotateAnticlockwise)
 # btn_backward.pack(pady=5)
 
-btn_stop = tkinter.Button(root, text="Stop")
+btn_stop = tkinter.Button(root, text="Stop Motor", command=Stop)
 btn_stop.pack(pady=5)
 
 # Creating the plot + graph holder
@@ -123,11 +103,55 @@ canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.draw()
 canvas.get_tk_widget().pack()
 
-animation_graph = animation.FuncAnimation(fig, animate, frames=100, fargs=(data_list, serialInst), interval=1000)
+# Pausing animation functionality
+pause = False
+def pause_animation():
+    global pause
+    pause ^= True
+
+def animate(i, data_list, serialInst):
+    bytes = serialInst.readline()
+    string_n = bytes.decode()
+    string = string_n.rstrip()
+    float_value = float(string)
+
+    # Add x and y to lists
+    try:
+        if not pause:
+            float_value = float(string)
+            data_list.append(float_value)
+    except:
+        pass
+
+    # Limit the data list to 100 values
+    data_list = data_list[-100:]
+
+    # Clear the last frame and draw the next frame
+    ax.clear()
+    ax.plot(data_list)
+
+    # Format plot
+    ax.set_ylim([-5, 5])
+    ax.set_title("Force Sensor Reading Live Plot")
+    ax.set_ylabel("Force (N)")
+    ax.set_xlabel("Time (s)")
+
+animation_graph = animation.FuncAnimation(
+    fig, animate, frames=100, fargs=(data_list, serialInst), interval=1000)
+
+# Buttons to control the graph animation
+btn_graph = tkinter.Button(
+    root, text="Pause/Resume Graph", command=pause_animation)
+btn_graph.pack(pady=5)
+
+btn_restart = tkinter.Button(
+    root, text="Restart Recording")
+btn_restart.pack(pady=5)
+
 plt.show()
 
 # Window configuration
-root.geometry("400x600")
+root.geometry("400x700")
 
 # Configuring the main loop and cleaning up as needed
 try:
