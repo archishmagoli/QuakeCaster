@@ -24,7 +24,7 @@ serialInst.port = portVal
 
 serialInst.open()
 
-# Defining functions we'll use when we press the button
+## Defining functions we'll use when we press the button
 
 # Sending data to Serial Port
 def sendData(motDir):
@@ -47,7 +47,7 @@ def sendData(motDir):
     serialInst.write(total.encode('utf-8'))
     serialInst.write(newLine.encode('utf-8'))
 
-# Functions to enable clockwise and anticlockwise rotation and to initiate the transmission of data to Serial
+# Enable clockwise and anticlockwise rotation and initiate the transmission of data to Serial
 def RotateClockwise():
     motDir = "Clockwise"
     sendData(motDir)
@@ -62,42 +62,42 @@ def Stop():
 
 # Creating the GUI
 root = tkinter.Tk()
-root.wm_title("Quakecaster Simulator")
+root.wm_title("QuakeCaster Simulator")
 
 # Creating a label and slider to control the speed of the motor
-speedLabel = Label(root, text="Speed Controls",
-                   font=('TkDefaultFont', 15, 'bold'))
-speedLabel.pack()
+titleLabel = Label(root, text="QuakeCaster Simulator", font=('TkDefaultFont', 15, 'bold'))
+titleLabel.grid(row=1, column=0, columnspan=2)
+
+speedLabel = Label(root, text="Speed Controls", font=('TkDefaultFont', 12, 'bold'))
+speedLabel.grid(row=2, column=0, columnspan=2)
 
 descriptionLabel = Label(
     root, text="Configure the speed and direction of rotation for your stepper motor below. Press the button for direction (or for \"Stop\") to get your motor running!", wraplength=325, justify="center")
-descriptionLabel.pack()
+descriptionLabel.grid(row=3, column=0, columnspan=2)
 
-slider = Scale(root, from_=1, to=10, length=300,
-               tickinterval=1, orient=HORIZONTAL)
+slider = Scale(root, from_=1, to=10, length=300, tickinterval=1, orient=HORIZONTAL)
 slider.set(4)
-slider.pack()
+slider.grid(row=4, column=0, columnspan=2)
 
 # Creating the buttons to set the direction of the rotation and transmit this data to the serial
 btn_forward = tkinter.Button(root, text="Start Motor", command=RotateClockwise)
-btn_forward.pack(pady=5)
-
 # btn_backward = tk.Button(root, text = "Anticlockwise", command=RotateAnticlockwise)
-# btn_backward.pack(pady=5)
-
 btn_stop = tkinter.Button(root, text="Stop Motor", command=Stop)
-btn_stop.pack(pady=5)
+
+btn_forward.grid(row=5, column=0, pady=5)
+# btn_backward.pack(pady=5)
+btn_stop.grid(row=5, column=1 ,pady=5)
 
 # Creating the plot + graph holder
+global data_list
 data_list = []
 fig = Figure(figsize=(5, 5), dpi=75)
-t = np.arange(0, 3, .01)
 ax = fig.add_subplot()
 
 # Placing plot into canvas for rendering
 canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.draw()
-canvas.get_tk_widget().pack()
+canvas.get_tk_widget().grid(row=6, column=0, columnspan=2, padx=10, pady=10)
 
 # Pausing animation functionality
 pause = False
@@ -105,7 +105,14 @@ def pause_animation():
     global pause
     pause ^= True
 
+# Restart animation functionality
+def restart_animation():
+    data_list.clear()
+
+# Animation function
 def animate(i, data_list, serialInst):
+
+    # Read data from serial port
     bytes = serialInst.readline()
     string_n = bytes.decode()
     string = string_n.rstrip()
@@ -132,21 +139,22 @@ def animate(i, data_list, serialInst):
     ax.set_ylabel("Force (N)")
     ax.set_xlabel("Time (s)")
 
+# Creating the animation
 animation_graph = animation.FuncAnimation(
     fig, animate, frames=100, fargs=(data_list, serialInst), interval=1000)
 
 # Buttons to control the graph animation
-btn_graph = tkinter.Button(
-    root, text="Pause/Resume Graph", command=pause_animation)
-btn_graph.pack(pady=5)
+btn_pause = tkinter.Button(
+    root, text="Pause/Resume", command=pause_animation)
+btn_restart = tkinter.Button(root, text="Restart", command=restart_animation)
 
-btn_restart = tkinter.Button(root, text="Restart Recording")
-btn_restart.pack(pady=5)
+btn_pause.grid(row=7, column=0)
+btn_restart.grid(row=7, column=1)
 
 plt.show()
 
 # Window configuration
-root.geometry("400x700")
+root.geometry("400x650")
 
 # Configuring the main loop and cleaning up as needed
 try:
