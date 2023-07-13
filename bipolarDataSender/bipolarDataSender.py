@@ -6,7 +6,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import numpy as np
 
 # Defining the variables we'll use in our script
 motRun = "1"
@@ -68,11 +67,11 @@ root.wm_title("QuakeCaster Simulator")
 titleLabel = Label(root, text="QuakeCaster Simulator", font=('TkDefaultFont', 15, 'bold'))
 titleLabel.grid(row=1, column=0, columnspan=2)
 
-speedLabel = Label(root, text="Speed Controls", font=('TkDefaultFont', 12, 'bold'))
+speedLabel = Label(root, text="Motor Controls", font=('TkDefaultFont', 12, 'bold'))
 speedLabel.grid(row=2, column=0, columnspan=2)
 
 descriptionLabel = Label(
-    root, text="Configure the speed and direction of rotation for your stepper motor below. Press the button for direction (or for \"Stop\") to get your motor running!", wraplength=325, justify="center")
+    root, text="Configure the speed of your stepper motor using the slider below. You can also start and stop your motor with the buttons under the slider.", wraplength=350, justify="center")
 descriptionLabel.grid(row=3, column=0, columnspan=2)
 
 slider = Scale(root, from_=1, to=10, length=300, tickinterval=1, orient=HORIZONTAL)
@@ -144,17 +143,23 @@ animation_graph = animation.FuncAnimation(
     fig, animate, frames=100, fargs=(data_list, serialInst), interval=1000)
 
 # Buttons to control the graph animation
-btn_pause = tkinter.Button(
-    root, text="Pause/Resume", command=pause_animation)
-btn_restart = tkinter.Button(root, text="Restart", command=restart_animation)
+btn_pause = tkinter.Button(root, text="Pause/Resume", command=pause_animation)
+btn_restart = tkinter.Button(root, text="Clear", command=restart_animation)
 
-btn_pause.grid(row=7, column=0)
-btn_restart.grid(row=7, column=1)
+# Plot title and description
+plotTitle = Label(root, text="Plot Controls", font=('TkDefaultFont', 12, 'bold'))
+plotTitle.grid(row=7, column=0, columnspan=2)
+
+plotDescription = Label(root, text="Use the buttons below to control the data points you record.", wraplength=350, justify="center")
+plotDescription.grid(row=8, column=0, columnspan=2)
+
+btn_pause.grid(row=9, column=0, pady=5)
+btn_restart.grid(row=9, column=1, pady=5)
 
 plt.show()
 
 # Window configuration
-root.geometry("400x650")
+root.geometry("400x700")
 
 # Configuring the main loop and cleaning up as needed
 try:
