@@ -140,7 +140,7 @@ def export_csv():
         subprocess.call(('xdg-open', csvfile.name))
         
 # Button to export CSV values
-btn_export = tkinter.Button(root, text="Export to CSV", command=export_csv)
+btn_export = tkinter.Button(root, text="Export to .csv", command=export_csv)
 btn_export.grid(row=4, column=10, pady=5)
 btn_export.pack_propagate(False)
 
@@ -205,7 +205,7 @@ plotTitle = Label(root, text="Plot Controls", font=('TkDefaultFont', 12, 'bold')
 plotTitle.grid(row=4, column=5, padx=5)
 plotTitle.pack_propagate(False)
 
-plotDescription = Label(root, text="Use the buttons to the right to control the data points you record.", wraplength=350, justify="center")
+plotDescription = Label(root, text="Use the buttons to the right to control the data points you record.\n\nIf the graph starts at a force of more than 2 Newtons (and you haven't modified the setup), click the \"Reset\" button on the Arduino for calibration!", wraplength=400, justify="left")
 plotDescription.grid(row=4, column=6, columnspan=2)
 plotDescription.pack_propagate(False)
 
@@ -215,7 +215,8 @@ btn_restart.grid(row=4, column=9, pady=5)
 plt.show()
 
 # Window configuration
-root.geometry("900x500")
+root.geometry("900x525")
+root.resizable(False,False)
 
 # Configuring the main loop and cleaning up as needed
 try:
