@@ -86,17 +86,17 @@ titleLabel.grid(row=1, column=5, columnspan=11)
 titleLabel.pack_propagate(False)
 
 speedLabel = Label(root, text="Motor Controls", font=('TkDefaultFont', 12, 'bold'))
-speedLabel.grid(row=2, column=5, columnspan=11)
+speedLabel.grid(row=2, column=5, padx = 5)
 speedLabel.pack_propagate(False)
 
 descriptionLabel = Label(
     root, text="Configure the speed of your stepper motor using the slider below. You can also start and stop your motor with the buttons next to the slider.", wraplength=1000)
-descriptionLabel.grid(row=3, column=6, columnspan=11)
+descriptionLabel.grid(row=2, column=6, columnspan=5)
 descriptionLabel.pack_propagate(False)
 
 slider = Scale(root, from_=1, to=10, length=300, tickinterval=1, orient=HORIZONTAL)
 slider.set(4)
-slider.grid(row=4, column=5, columnspan=11)
+slider.grid(row=3, column=5, columnspan=5)
 slider.pack_propagate(False)
 
 # Creating the buttons to set the direction of the rotation and transmit this data to the serial
@@ -107,9 +107,9 @@ btn_forward.pack_propagate(False)
 btn_stop = tkinter.Button(root, text="Stop Motor", command=Stop)
 btn_stop.pack_propagate(False)
 
-btn_forward.grid(row=1, column=9, pady=5, padx=5)
+btn_forward.grid(row=3, column=9, pady=5, padx=5)
 # btn_backward.pack(pady=5)
-btn_stop.grid(row=1, column=10, pady=5)
+btn_stop.grid(row=3, column=10, pady=5)
 
 # Creating the plot + graph holder
 global data_list
@@ -141,13 +141,13 @@ def export_csv():
         
 # Button to export CSV values
 btn_export = tkinter.Button(root, text="Export to CSV", command=export_csv)
-btn_export.grid(row=7, column=5, pady=5)
+btn_export.grid(row=4, column=10, pady=5)
 btn_export.pack_propagate(False)
 
 # Placing plot into canvas for rendering
 canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.draw()
-canvas.get_tk_widget().grid(row=7, column=5, columnspan=2, padx=10, pady=10)
+canvas.get_tk_widget().grid(row=5, column=5, columnspan=11, padx=10, pady=10)
 canvas.get_tk_widget().pack_propagate(False)
 
 # Pausing animation functionality
@@ -202,20 +202,20 @@ btn_restart.pack_propagate(False)
 
 # Plot title and description
 plotTitle = Label(root, text="Plot Controls", font=('TkDefaultFont', 12, 'bold'))
-plotTitle.grid(row=6, column=5, columnspan=2)
+plotTitle.grid(row=4, column=5, padx=5)
 plotTitle.pack_propagate(False)
 
-plotDescription = Label(root, text="Use the buttons below to control the data points you record.", wraplength=350, justify="center")
-plotDescription.grid(row=8, column=5, columnspan=2)
+plotDescription = Label(root, text="Use the buttons to the right to control the data points you record.", wraplength=350, justify="center")
+plotDescription.grid(row=4, column=6, columnspan=2)
 plotDescription.pack_propagate(False)
 
-btn_pause.grid(row=9, column=5, pady=5)
-btn_restart.grid(row=9, column=6, pady=5)
+btn_pause.grid(row=4, column=8, pady=5)
+btn_restart.grid(row=4, column=9, pady=5)
 
 plt.show()
 
 # Window configuration
-root.geometry("1000x500")
+root.geometry("900x500")
 
 # Configuring the main loop and cleaning up as needed
 try:
