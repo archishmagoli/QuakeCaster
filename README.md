@@ -9,7 +9,7 @@ The **QuakeCaster** is an interactive laboratory model that simulates **earthqua
 I decided to **take this project further**, adding new enhancements to further enhance the usability of this model within the classroom. You can check out the new tools being added to the project in the **Features** section below!
 
 ## User Setup
-- Clone this repository and run `bipolarDataSender\bipolarDataSender.exe` (to be updated) to start the GUI. From there, you have the required information to complete the lab.
+- Clone this repository and run `bipolarDataSender\bipolarDataSender.exe` to start the GUI. From there, you have the required information to complete the lab.
 
 ## Developer Setup
 - Install the following software: 
@@ -25,8 +25,8 @@ I decided to **take this project further**, adding new enhancements to further e
 - Live updation of force vs. time graph, based on values sent from the Vernier force sensor.
   - Additional user-facing controls for recording force vs. time graph data, including:
     - Pausing/resuming live updation.
-    - (In development) Restarting data recording.
-- (In development) Data export to CSV/Excel formats.
+    - Restarting data recording.
+- Data export to CSV/Excel formats.
 
 ## Contributors
 - ***Archie Goli (August 2022 - Present)***
