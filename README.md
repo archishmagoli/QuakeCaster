@@ -20,7 +20,7 @@ I decided to **take this project further**, adding new enhancements to further e
   - `serial` library: required for sending and receiving serial input/output with the force sensor.
     - (`matplotlib` and `serial` can be installed through `pip` on the command line.)
 
-## Features (Continuously Updated)
+## Main Features
 - Ability to customize motor speed and direction of rotation.
 - Live updation of force vs. time graph, based on values sent from the Vernier force sensor.
   - Additional user-facing controls for recording force vs. time graph data, including:
