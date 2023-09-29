@@ -40,9 +40,9 @@ void loop() {
   while (motorSpecs != "" && Serial.available() == 0) {
     Parse_the_Data(motorSpecs);
     if (motDirString == "Clockwise") {
-      motor_Run_Clockwise(200 * motSpeedFloat);
+      motor_Run_Clockwise(0.5 * motSpeedFloat);
     } else if (motDirString == "Anticlockwise") {
-      motor_Run_Anticlockwise(200 * motSpeedFloat);
+      motor_Run_Anticlockwise(0.5 * motSpeedFloat);
     } else if (motDirString == "Stop") {
       digitalWrite(enPin, HIGH);
       break;
