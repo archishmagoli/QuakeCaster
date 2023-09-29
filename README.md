@@ -28,6 +28,9 @@ I decided to **take this project further**, adding new enhancements to further e
     - Restarting data recording.
 - Data export to CSV/Excel formats.
 
+## Graphical User Interface (GUI) as of September 2023
+[GUI Image](https://github.com/archishmagoli/QuakeCaster/blob/main/GUI%20-%20Final%20Product.png)
+
 ## Contributors
 - ***Archie Goli (August 2022 - Present)***
 - Reiden Webber (August 2022 - December 2022)
