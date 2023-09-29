@@ -29,7 +29,8 @@ I decided to **take this project further**, adding new enhancements to further e
 - Data export to CSV/Excel formats.
 
 ## Graphical User Interface (GUI) as of September 2023
-[GUI Image](https://github.com/archishmagoli/QuakeCaster/blob/main/GUI%20-%20Final%20Product.png?raw=true)
+<img width="674" alt="image" src="https://github.com/archishmagoli/QuakeCaster/blob/main/GUI%20-%20Final%20Product.png">
+
 
 ## Contributors
 - ***Archie Goli (August 2022 - Present)***
