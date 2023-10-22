@@ -41,6 +41,8 @@ indexD = "D"
 newLine = "\n"
 
 ## Defining functions we'll use when we press the button
+initial = "Stop"
+serialInst.write(initial.encode('utf-8'))
 
 # Sending data to Serial Port
 def sendData(motDir):
@@ -178,7 +180,7 @@ def animate(i, data_list, serialInst):
         pass
 
     # Limit the data list to 1000 values
-    data_list = data_list[-1000:]
+    data_list = data_list[-500:]
 
     # Clear the last frame and draw the next frame
     ax.clear()
@@ -192,7 +194,7 @@ def animate(i, data_list, serialInst):
 
 # Creating the animation
 animation_graph = animation.FuncAnimation(
-    fig, animate, frames=100, fargs=(data_list, serialInst), interval=1000) # interval=1000 is one second apart
+    fig, animate, frames=100, fargs=(data_list, serialInst)) # interval=1000 is one second apart
 
 # Buttons to control the graph animation
 btn_pause = tkinter.Button(root, text="Pause/Resume", command=pause_animation)
