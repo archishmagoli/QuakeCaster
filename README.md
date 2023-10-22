@@ -20,13 +20,16 @@ I decided to **take this project further**, adding new enhancements to further e
   - `serial` library: required for sending and receiving serial input/output with the force sensor.
     - (`matplotlib` and `serial` can be installed through `pip` on the command line.)
 
-## Features (Continuously Updated)
+## Main Features
 - Ability to customize motor speed and direction of rotation.
 - Live updation of force vs. time graph, based on values sent from the Vernier force sensor.
   - Additional user-facing controls for recording force vs. time graph data, including:
     - Pausing/resuming live updation.
     - Restarting data recording.
 - Data export to CSV/Excel formats.
+
+## Graphical User Interface (GUI)
+<img width="674" alt="image" src="https://github.com/archishmagoli/QuakeCaster/blob/main/GUI%20-%20Final%20Product.png">
 
 ## Contributors
 - ***Archie Goli (August 2022 - Present)***
