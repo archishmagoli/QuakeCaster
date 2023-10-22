@@ -49,7 +49,7 @@ void loop() {
     }
   }
 
-  // Update the motor steps based on the interval
+  // Update the motor steps based on the interval (a.k.a account for user speed)
   unsigned long currentMillis = millis();
   if (currentMillis - previousMotorStepMillis >= motorStepInterval && (motDirString == "Clockwise" || motDirString == "Anticlockwise")) {
     stepMotor();
@@ -69,10 +69,8 @@ void readSensor() {
 }
 
 void stepMotor() {
-  digitalWrite(stepPin, HIGH);
-  delayMicroseconds(200); // Adjust this delay as needed for your motor
+  digitalWrite(stepPin, HIGH); // step the motor accordingly
   digitalWrite(stepPin, LOW);
-  delayMicroseconds(200); // Adjust this delay as needed for your motor
 }
 
 void Parse_the_Data(String dataIn) {

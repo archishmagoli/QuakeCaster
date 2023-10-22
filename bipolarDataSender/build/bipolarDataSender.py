@@ -12,6 +12,7 @@ import datetime
 import warnings
 import serial
 import serial.tools.list_ports
+import sys
 
 # Detecting the Arduino port
 arduino_ports = [
@@ -187,7 +188,7 @@ def animate(i, data_list, serialInst):
     ax.plot(data_list)
 
     # Format plot
-    ax.set_ylim([-5, 5])
+    ax.set_ylim([-10, 10])
     ax.set_title("Force Sensor Reading Live Plot")
     ax.set_ylabel("Force (N)")
     ax.set_xlabel("Time (s)")
@@ -225,4 +226,6 @@ try:
     while 'normal' == root.state():
         root.update()
 except:
+    serialInst.write(initial.encode('utf-8'))
     serialInst.close()
+    sys.exit(0)
