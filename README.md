@@ -27,6 +27,10 @@ I decided to **take this project further**, adding new enhancements to further e
   - Restarting data recording/clearing the graph.
 - Data export to CSV/Excel formats.
 
+  ## Notes
+  - Here is the [Full Lab Set-Up Guide](https://docs.google.com/document/d/1RADYkkj_sVewNf8-gIFMM_3iBdzdKFuB9JWc6mCENCU/edit?usp=sharing).
+  - If you would like to be added as a *code contributor* to this project, please email me at [archishma.goli@gmail.com](mailto:archishma.goli@gmail.com).
+
 ## Graphical User Interface (GUI)
 <img width="674" alt="image" src="https://github.com/archishmagoli/QuakeCaster/blob/main/GUI%20-%20Final%20Product.png">
 
