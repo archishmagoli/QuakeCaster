@@ -23,13 +23,16 @@ I decided to **take this project further**, adding new enhancements to further e
 ## Main Features
 - Ability to customize motor speed and direction of rotation.
 - Live updation of force vs. time graph, based on values sent from the Vernier force sensor.
-  - Additional user-facing controls for recording force vs. time graph data, including:
-    - Pausing/resuming live updation.
-    - Restarting data recording.
+  - Pausing/resuming live updation of the graph.
+  - Restarting data recording/clearing the graph.
 - Data export to CSV/Excel formats.
 
 ## Graphical User Interface (GUI)
 <img width="674" alt="image" src="https://github.com/archishmagoli/QuakeCaster/blob/main/GUI%20-%20Final%20Product.png">
+
+## Notes
+  - Here is the [Full Lab Set-Up Guide](https://docs.google.com/document/d/1RADYkkj_sVewNf8-gIFMM_3iBdzdKFuB9JWc6mCENCU/edit?usp=sharing).
+  - If you would like to be added as a *code contributor* to this project, please email me at [archishma.goli@gmail.com](mailto:archishma.goli@gmail.com).
 
 ## Contributors
 - ***Archie Goli (August 2022 - Present)***
