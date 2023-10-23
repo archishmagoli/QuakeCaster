@@ -225,7 +225,8 @@ root.resizable(False,False)
 try:
     while 'normal' == root.state():
         root.update()
-except:
+except Exception as e:
+    pause_animation()
     serialInst.write(initial.encode('utf-8'))
     serialInst.close()
     sys.exit(0)
