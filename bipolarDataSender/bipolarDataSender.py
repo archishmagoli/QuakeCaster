@@ -29,7 +29,7 @@ arduino_ports = [
     if any(keyword in p.description or keyword in p.manufacturer for keyword in arduino_keywords)
 ]
 
-print("Arduino Ports:", arduino_ports)
+# print("Arduino Ports:", arduino_ports)
 
 if not arduino_ports:
     raise IOError("No Arduino found")
