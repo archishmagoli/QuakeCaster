@@ -15,11 +15,22 @@ import serial.tools.list_ports
 import sys
 
 # Detecting the Arduino port
+# arduino_ports = [
+#     p.device
+#     for p in serial.tools.list_ports.comports()
+#     if 'Arduino' in p.description or 'Arduino' in p.manufacturer  # may need tweaking to match new arduinos
+# ]
+
+arduino_keywords = ["Arduino", "CH340", "FTDI", "USB Serial"]
+
 arduino_ports = [
     p.device
     for p in serial.tools.list_ports.comports()
-    if 'Arduino' in p.description  # may need tweaking to match new arduinos
+    if any(keyword in p.description or keyword in p.manufacturer for keyword in arduino_keywords)
 ]
+
+print("Arduino Ports:", arduino_ports)
+
 if not arduino_ports:
     raise IOError("No Arduino found")
 if len(arduino_ports) > 1:
